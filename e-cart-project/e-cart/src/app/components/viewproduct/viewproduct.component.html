@@ -1,0 +1,24 @@
+     <!-- Product section-->
+     <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row  px-5 align-items-center">
+                <div class="col-md-6 img-fluid"><img class="card-img-top mb-5 mb-md-0" [src]=product.image style="height: 400px; object-fit:contain"  alt="..." /></div>
+                <div class="col-md-6">
+                    <div class="small mb-1 fw-medium ">{{product.category}}</div>
+                    <h3 class="display-6 fw-bolder" style="color: #002349;">{{product.title}}</h3>
+                    <div class="fs-3 mb-4  text-end text-medium text-warning p-2 rounded"  style="background-color: #002349; width: fit-content;">
+                       
+                        <span>${{product.price}}</span>
+                    </div>
+                    <p class="text-dark">{{product.description}}</p>
+                    <div class="d-flex">
+                        <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                        <button (click)="addToWishlist()" class="btn btn-danger flex-shrink-0 me-3" type="button">
+                            <i class="bi-cart-fill me-1"></i><i class="fa-solid fa-heart"></i> </button>
+                        <button (click)="addToCart(product)" class="btn btn-success me-3"><i class="fa-solid fa-cart-plus"></i></button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

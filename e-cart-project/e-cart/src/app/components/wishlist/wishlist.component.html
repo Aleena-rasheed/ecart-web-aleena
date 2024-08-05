@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="row py-3">
+                <div class="col py-3 d-flex justify-content-center " *ngFor="let product of wishlistArray">
+
+                       <div class="bg-light d-flex justify-content-between border border-1 p-2 bg-info-subtle " style="width:600px; height: 250px;">
+                        <div  >
+                            <img class="img-fluid" style="width: 180px;height: 200px;object-fit: contain;"  [src]="product.image" alt="">
+
+                        </div>
+                       
+                           <div>
+                            <div class="d-flex justify-content-end  ">
+                                <h6 class="  shadow rounded p-1 text-center " style="width: 60px; background-color:#ddd0c8 ;">5 <i class="fa-solid fa-star" style="color: #edc63a;"></i></h6>
+
+                            </div>
+                            <div class="px-3">
+                            <h5 class="fw-medium mt-3 " style="color: #002349;">Product Name: {{product.title}}</h5>
+                            <h5 class="fw-medium text-end text-dark " style="color: #002349;"> Price: <span class="text-danger"> $ {{product.price}}/-</span></h5>
+
+                            </div>
+                            
+                            <hr>
+                            <div class="d-flex justify-content-evenly mt-3 ">
+                                <button (click)="deleteWishlistProduct(product.id)" class="btn text-danger" style="width: 60px; background-color:#ddd0c8 ;"><i class="fa-solid fa-trash"></i></button>
+                                <button class="btn text-success" style="width: 60px; background-color:#ddd0c8 ;"><i class="fa-solid fa-cart-plus"></i></button>
+                               
+                            </div>                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- empty wish list -->
+            <div class="row my-3 " *ngIf="wishlistArray.length==0">
+                <div class="col py-5 text-center  ">
+                    <div>
+                        <img width="350px" src="https://static.vecteezy.com/system/resources/thumbnails/039/650/515/small_2x/wishlist-icon-in-comic-style-like-document-cartoon-illustration-on-isolated-background-favorite-list-splash-effect-business-concept-vector.jpg"  alt=""><br>
+                        <h3>Oh! Your Wish List is Empty</h3><br>
+                        <button routerLink="" class="btn btn-warning">Add to Wishlist</button>    
+
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row py-5">
+        <div class="col p-5">
+            <img width="440px" src="https://media.tenor.com/p0G_bmA2vSYAAAAd/login.gif" alt="">
+        </div>
+        <div class="col p-5 text-center  ">
+            <form action="" [formGroup]="registerForm">
+                <div class=" ">
+                    <h2 class="text-center my-4">Register Here ..</h2>
+                    <input formControlName="username" placeholde="username" type="text" class="form-control my-3" placeholder="Username">
+                    <div *ngIf="this.registerForm.get('username')?.errors && this.registerForm.get('username')?.touched " class="text-danger text-start ">*Invalid Username</div>
+                    
+                    <input formControlName="email"  placeholde="email"   type="email" class="form-control my-3" placeholder="Email">
+                    <div *ngIf="this.registerForm.get('email')?.errors && this.registerForm.get('email')?.touched " class="text-danger text-start ">*Invalid Email</div>
+
+                    <input formControlName="password"  placeholde="password"   type="password" class="form-control my-3 " placeholder="Password">
+                    <div *ngIf="this.registerForm.get('password')?.errors && this.registerForm.get('password')?.touched " class="text-danger text-start ">*Invalid Password</div>
+
+                    <div class="text-center my-3 ">
+                        <button (click)="register()" class="btn btn-primary">Register</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

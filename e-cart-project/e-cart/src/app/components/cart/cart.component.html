@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="row p-3">
+        <div class="col-8 p-3">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let item of products ; let i =index">
+                    <tr>
+                        <td>{{i+1}}</td>
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.title}}</td>
+                        <td><img width="100px" [src]="item.image" alt=""></td>
+
+                        <!-- indement decrement -->
+                        <td class="d-flex">
+                            <button class="btn" (click)="itemdecrement(item.id)">-</button>
+                            <input type="text " class="form-control w-25 text-center" value="{{item.quantity}}"
+                                readonly>
+                            <button class="btn" (click)="itemincrement(item.id)">+</button>
+                                       
+                        </td>
+
+                        <td>{{item.price}}</td>
+                        <td class="text-danger"> <a><i  (click)="deleteCart(item.id)" class="fa-solid fa-trash"></i></a> </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <!-- empty cart div -->
+            <div class="row my-3" *ngIf="products.length === 0">
+                <div class="col py-3 text-center">
+                    <img src="https://bakestudio.in/assets/images/cart/empty-cart.gif" alt="">
+                    <h3 class="my-3">The Cart is empty</h3>
+                    <button routerLink="" class="btn btn-primary">Add items to Cart</button>
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-4 bg-info-subtle p-5 " style="height: 300px;">
+            <h1 class="text-danger">Cart Summary</h1>
+            <hr>
+            <h3 class="text-primary">Grand Total : $ {{totalPrice}} </h3>
+            <div class="text-center">
+                <button class="btn btn-success fw-medium"  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Checkout</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- modal -->
+<div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div  class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">CheckOut Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body"  >
+          <h5 class="text-center text-dark">Enter Your Details</h5>
+          <input type="text" class="form-control mb-3" placeholder="Name">
+          <input type="text" class="form-control  mb-3" placeholder="Phone Number">
+          <input type="text" class="form-control  mb-3" placeholder="Address">
+          <h5 class="text-center  mb-3 text-success">Total Price : $ {{totalPrice}}</h5>
+        </div>
+        <div *ngIf="makePaymentStatus">
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+        </div>
+        <div class="modal-footer d-flex justify-content-center ">
+          <button type="button" class="btn btn-primary" (click)="makePayment()">Make Payment</button>
+        
+        </div>
+      </div>
+    </div>
+  </div>
